@@ -1,0 +1,179 @@
+---
+license: apache-2.0
+pretty_name: Spinning Up in PDE Solvers
+language:
+  - en
+tags:
+  - education
+  - curriculum
+  - scientific-machine-learning
+  - sciml
+  - pde
+  - partial-differential-equations
+  - jax
+  - finite-differences
+  - finite-elements
+  - spectral-methods
+  - neural-operators
+  - pinns
+  - differentiable-physics
+size_categories:
+  - n<1K
+---
+
+# Spinning Up in PDE Solvers
+
+**From Lewis Fry Richardson's forecast factory to differentiable physics — a hands-on curriculum tracing the lineage of computational PDE solvers**
+
+<p align="center">
+  <img src="https://img.shields.io/badge/modules-12-blue" alt="12 modules"/>
+  <img src="https://img.shields.io/badge/JAX-first-green" alt="JAX-first"/>
+  <img src="https://img.shields.io/badge/license-Apache_2.0-orange" alt="License"/>
+  <img src="https://img.shields.io/badge/community-HF_Science_%23pde-yellow" alt="HF Science #pde"/>
+</p>
+
+---
+
+In 1922, Lewis Fry Richardson published *Weather Prediction by Numerical Process* — a 236-page proposal to forecast the atmosphere by hand, using a "forecast factory" of 64,000 human computers seated in a vast amphitheatre, each solving a finite-difference cell. His own six-hour test forecast diverged into nonsense. Six years later, Courant, Friedrichs, and Lewy explained why: he had violated a stability bound on the timestep. By 1950, Charney, Fjørtoft, and von Neumann ran the same idea on ENIAC and got a forecast that worked. The scheme they used — forward-time centred-space, FTCS — is the same baseline you'll find in every PDEBench plot today, three quarters of a century later.
+
+This curriculum traces that intellectual lineage from Euler's 1768 forward step through finite elements, spectral methods, multigrid, and adjoints, into modern differentiable physics and neural operators. You will implement every method on a small problem, see why each one was invented, and understand what the modern benchmarks (PDEBench, PDEArena, SciMLBenchmarks, DyNoBench) are actually measuring.
+
+> Modeled on OpenAI's [Spinning Up in RL](https://spinningup.openai.com/) and the author's [Spinning Up in Active Inference](https://github.com/m9h/spinning-up-alf). Companion to the [Hugging Face Science](https://huggingface.co/HuggingFaceScience) Discord, channel **#pde**, with a weekly community session.
+
+## How this fits with other resources
+
+There are excellent neural-operator benchmarks already. This curriculum exists to give them a backstory.
+
+|  | [PDEBench](https://github.com/pdebench/PDEBench) | [PDEArena](https://github.com/microsoft/pdearena) | [SciMLBenchmarks](https://github.com/SciML/SciMLBenchmarks.jl) | [DeepXDE](https://github.com/lululxvi/deepxde) | **This curriculum** |
+|---|---|---|---|---|---|
+| **Classical PDE numerics** | -- | -- | Some | -- | Modules 1-5 (FD, FV, FEM, spectral, multigrid) |
+| **Adjoint & AD** | -- | -- | Implicit (Julia AD) | -- | Module 6, with jaxctrl crosswalk |
+| **Differentiable solvers** | -- | -- | -- | -- | Module 7 (JAX-CFD, PhiFlow, jwave) |
+| **PINNs** | -- | -- | -- | Yes | Module 8 |
+| **Neural operators** | FNO, U-Net | FNO, U-Net, GNO | -- | -- | Modules 9-10 |
+| **Standardised metrics** | Conservation, spectral RMSE | Trajectory rollout | Work-precision diagrams | -- | Module 11 (uses all of the above) |
+| **Inverse problems / FWI** | -- | -- | -- | -- | Module 12 (brain-fwi, jwave, fijee leadfield) |
+| **Historical narrative** | -- | -- | -- | -- | Every module |
+| **Primary language** | PyTorch | PyTorch | Julia | TF/PyTorch/JAX | JAX |
+| **Format** | Datasets + baselines | Datasets + baselines | Benchmarks + WPDs | Solver framework | Curriculum + weekly sessions |
+
+**The gap we fill:** PDEBench tells you which architecture wins on Burgers. It does not tell you what FTCS is, why CFL exists, or why the FEM community spent thirty years arguing about test functions. This curriculum is the "spinning-up" prequel: read it, run the notebooks, and the benchmark papers will read like the next chapter instead of an alien language.
+
+## Who is this for?
+
+- ML researchers entering SciML who want to understand what they're benchmarking against
+- Computational scientists whose first move is FEniCS or PETSc, curious about JAX-native differentiable solvers
+- Graduate students preparing to read [Karniadakis et al.](https://www.nature.com/articles/s42254-021-00314-5), [Li et al. (FNO)](https://arxiv.org/abs/2010.08895), or [Lu et al. (DeepONet)](https://arxiv.org/abs/1910.03193) and wanting context
+- Anyone in the [Hugging Face Science](https://huggingface.co/HuggingFaceScience) Discord #pde channel who wants to follow along week by week
+
+**Prerequisites:** Python, NumPy, ODE basics. Vector calculus helpful but reviewed as we go. No prior FEM or neural-operator experience required.
+
+---
+
+## The Curriculum
+
+### Part 1 — Classical PDE Numerics
+
+The 250-year backstory. What every modern surrogate model is compared against, and why those comparisons are the right ones.
+
+| | Module | What you'll build | Anchored to |
+|---|---|---|---|
+| [01](articles/pde-series-part1-finite-differences.md) | **Finite Differences & CFL** | 1D heat equation in JAX, explicit FTCS vs Crank-Nicolson, watch the CFL boundary in real time. | PDEBench FTCS baseline |
+| 02 | **Finite Volume & Conservation Laws** | 1D Burgers with Godunov / Roe / minmod limiters. Why shocks need conservative discretisation. | PDEBench compressible flow |
+| 03 | **Finite Elements & Variational Forms** | Anisotropic Poisson on a tetrahedral mesh in FEniCSx, reading from a real `.ufl` file. | [`fijee/Finite_element_method_models/tCS_model.ufl`](https://github.com/m9h/Fijee-Project/blob/master/Fijee/Finite_element_method_models/tCS_model.ufl) |
+| 04 | **Spectral & Pseudospectral Methods** | 2D Navier-Stokes with FFT-based pseudospectral, Orszag's 2/3 dealiasing rule. | [jwave](https://github.com/m9h/jwave) k-Wave-style propagation |
+| 05 | **Multigrid & Preconditioners** | Full Multigrid V-cycles on a Poisson problem, comparison vs CG / PCG. | [`libspm/field.h`](https://github.com/m9h/libspm) — production FMG/CG in C |
+
+### Part 2 — Differentiable Physics
+
+Where adjoints meet automatic differentiation, and the simulator becomes a layer.
+
+| | Module | What you'll build | Anchored to |
+|---|---|---|---|
+| 06 | **Adjoints & Automatic Differentiation** | Hand-derived adjoint of a 1D advection solver, then `jax.grad` through the same solver. The two answers had better match. | [jaxctrl](https://github.com/m9h/jaxctrl) (Lyapunov / Riccati adjoints) |
+| 07 | **Differentiable Solvers in JAX** | Tour of JAX-CFD, PhiFlow, jwave: how a forward solver becomes a gradient operator. Train a learned closure on a coarse grid. | [jwave](https://github.com/m9h/jwave), [vpjax](https://github.com/m9h/vpjax), [vbjax](https://github.com/m9h/vbjax), [dot-jax](https://github.com/m9h/dot-jax) |
+
+### Part 3 — Neural Operators
+
+Surrogate models that learn maps between function spaces, not point values.
+
+| | Module | What you'll build | Anchored to |
+|---|---|---|---|
+| 08 | **Physics-Informed Neural Networks** | A PINN for 1D Burgers from scratch in Equinox, then read [Raissi et al. 2019](https://www.sciencedirect.com/science/article/pii/S0021999118307125). Discuss: when do PINNs beat classical solvers, and when don't they? | [DeepXDE](https://github.com/lululxvi/deepxde) baseline comparison |
+| 09 | **DeepONet & Fourier Neural Operators** | Reproduce a small FNO on Darcy flow. Spectral bias, resolution invariance, the operator-learning premise. | [neuraloperator](https://github.com/neuraloperator/neuraloperator) |
+| 10 | **Geometric & Mesh-Aware Operators** | GraphNet-based operators (MeshGraphNets style) on irregular meshes. Why FNO's regular-grid assumption breaks for engineering problems. | [hgx](https://github.com/m9h/hgx) hypergraph operator overlap |
+
+### Part 4 — Benchmarks, Inverse Problems, Discovery
+
+What "good" looks like, and what real problems look like.
+
+| | Module | What you'll build | Anchored to |
+|---|---|---|---|
+| 11 | **The Benchmark Landscape** | Run the same FNO on PDEBench Burgers, then on PDEArena Navier-Stokes, then on a SciMLBenchmarks WPD. Read the metric definitions: spectral RMSE, conservation RMSE, work-precision. | [PDEBench](https://github.com/pdebench/PDEBench), [PDEArena](https://github.com/microsoft/pdearena), [DyNoBench (dynamicsai.org)](https://dynamicsai.org/) |
+| 12 | **Inverse Problems & FWI** | Full-waveform inversion on a small acoustic test case in jwave; brief tour of brain-fwi (transcranial FWI) and the EEG forward-inverse problem (fijee leadfield → source localization). | [brain-fwi](https://github.com/m9h/brain-fwi), [jwave](https://github.com/m9h/jwave), [Fijee-Project](https://github.com/m9h/Fijee-Project) |
+
+A 13th module — **Agent-driven PDE discovery** — is planned but not scheduled, pending [agentsciml](https://github.com/m9h/agentsciml) maturity.
+
+---
+
+## The Voice
+
+Each module ships as both a notebook and a companion article. The articles follow the [Fedora Magazine](https://fedoramagazine.org/) cadence the author has used in the [linear-algebra series](https://github.com/m9h/fedora-linear-algebra-mag-series): a hook tied to a real-world artifact, the historical motivation (people, places, dates), the math, the code you can run today, and a forward link to the next idea in the sequence.
+
+The companion notebooks are written in [jupytext](https://jupytext.readthedocs.io/) `.py` percent format for clean diffs, and convert to `.ipynb` with one command. See the [notebooks README](notebooks/) for the conversion recipe.
+
+## Companion repositories
+
+This curriculum is the front door to a constellation of JAX-native scientific-computing repositories by the same author. Each module names the relevant ones above; here is the full crosswalk:
+
+| Repo | Role in the curriculum |
+|---|---|
+| [jaxctrl](https://github.com/m9h/jaxctrl) | Differentiable control (Lyapunov, Riccati, Gramians). Adjoint duality with PDE-constrained optimization. |
+| [agentsciml](https://github.com/m9h/agentsciml) | Multi-agent evolutionary framework for SciML discovery. PDE-as-tool-use. |
+| [jwave](https://github.com/m9h/jwave) | Differentiable acoustics in JAX, pseudospectral. Module 4, Module 7, Module 12. |
+| [vpjax](https://github.com/m9h/vpjax) | Differentiable cerebrovascular models. Coupled hyperbolic / parabolic systems. |
+| [vbjax](https://github.com/m9h/vbjax) | Virtual brain modelling — neural mass + integration. |
+| [dot-jax](https://github.com/m9h/dot-jax) | Diffuse Optical Tomography (a parabolic forward, ill-posed inverse). |
+| [brain-fwi](https://github.com/m9h/brain-fwi) | Full waveform inversion through the skull. Capstone-grade inverse problem. |
+| [libspm](https://github.com/m9h/libspm) | Standalone C library for SPM's PDE solvers — Full Multigrid, B-splines, regularizers. Module 5. |
+| [Fijee-Project](https://github.com/m9h/Fijee-Project) | FEM forward EEG (anisotropic Poisson) + Jansen-Rit/Wendling biophysics. Module 3, Module 12. |
+
+See [crosswalk.md](crosswalk.md) for module-by-module pointers.
+
+## Installation
+
+This repository is mirrored on both Hugging Face and GitHub:
+
+```bash
+# From Hugging Face (primary; supports `huggingface-cli`):
+git clone https://huggingface.co/datasets/m9h/spinning-up-pde
+cd spinning-up-pde
+
+# Or from GitHub (mirror):
+# git clone https://github.com/m9h/spinning-up-pde.git
+
+# Create environment (requires uv: https://docs.astral.sh/uv/)
+uv venv .venv --python 3.13
+source .venv/bin/activate
+
+# Core dependencies
+uv pip install -r requirements.txt
+
+# Convert jupytext .py notebooks to .ipynb
+jupytext --to notebook notebooks/*.py
+
+# Launch
+jupyter lab
+```
+
+JAX install: on Linux/CUDA add `jax[cuda12]`; on Apple Silicon use the standard `jax` wheel (CPU) or `jax-mps` for MLX-backed acceleration on M-series hardware. See [JAX install docs](https://docs.jax.dev/en/latest/installation.html).
+
+## Community
+
+- **Discord:** [Hugging Face Science](https://huggingface.co/HuggingFaceScience), channel `#pde`
+- **Weekly session:** one module per week, walkthrough + open Q&A. Time TBA in the channel.
+- **Issues / PRs:** corrections, extra references, alternative implementations all welcome — especially historical citations we missed.
+
+## License
+
+Apache 2.0. Content is reusable; please cite the curriculum if you adapt it.

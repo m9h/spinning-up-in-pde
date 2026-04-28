@@ -1,0 +1,20 @@
+# Core scientific stack
+numpy
+scipy
+matplotlib
+
+# JAX — install the appropriate backend wheel for your hardware:
+#   Linux + CUDA:        pip install "jax[cuda12]"
+#   Apple Silicon (MLX): pip install jax-mps
+#   CPU-only fallback:   pip install jax
+jax
+
+# Notebook environment
+jupyter
+jupyterlab
+jupytext
+ipykernel
+ipywidgets
+
+# Plotting / display
+seaborn
