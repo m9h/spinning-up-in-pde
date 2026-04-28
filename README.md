@@ -145,8 +145,8 @@ See [crosswalk.md](crosswalk.md) for module-by-module pointers.
 This repository is mirrored on both Hugging Face and GitHub:
 
 ```bash
-# From Hugging Face (primary; supports `huggingface-cli`):
-git clone https://huggingface.co/datasets/m9h/spinning-up-pde
+# From Hugging Face (primary; uses the `hf` CLI):
+git clone https://huggingface.co/datasets/mhough/spinning-up-pde
 cd spinning-up-pde
 
 # Or from GitHub (mirror):
