@@ -59,6 +59,25 @@ There are excellent neural-operator benchmarks already. This curriculum exists t
 
 **The gap we fill:** PDEBench tells you which architecture wins on Burgers. It does not tell you what FTCS is, why CFL exists, or why the FEM community spent thirty years arguing about test functions. This curriculum is the "spinning-up" prequel: read it, run the notebooks, and the benchmark papers will read like the next chapter instead of an alien language.
 
+## Where the work happens
+
+The history of computational PDE solvers is also a history of specific institutions, and the modern SciML community is concentrated in a recognisable set of them. The curriculum cites them where their work is load-bearing; this section is the orienting map.
+
+- **[Courant Institute (NYU)](https://cims.nyu.edu/)** — Founded by Richard Courant, who put the **C** in CFL (Module 01). The lineage runs from Friedrichs and Lewy through Peter Lax, Cathleen Morawetz, Leslie Greengard (FMM), and a generation of mathematical-PDE-numerics PhDs who staffed every other institution on this list. Still the gravitational centre for theoretical PDE numerics.
+- **US Department of Energy national laboratories.** Each lab carries a distinct numerical tradition:
+  - **[Los Alamos (LANL)](https://www.lanl.gov/)** — von Neumann's nuclear simulations; the institutional context in which his stability analysis (Module 01) matured. Modern: ALE methods, kinetic codes, FLAG, xRAGE.
+  - **[Argonne (ANL)](https://www.anl.gov/)** — home of [PETSc](https://petsc.org/), the dominant scalable PDE-solver toolkit; also the [MPICH](https://www.mpich.org/) reference implementation.
+  - **[Lawrence Berkeley (LBNL)](https://www.lbl.gov/)** — Phil Colella's adaptive-mesh-refinement lineage; [BoxLib / AMReX](https://amrex-codes.github.io/amrex/), [Chombo](https://commons.lbl.gov/display/chombo/Chombo+-+Software+for+Adaptive+Solutions+of+Partial+Differential+Equations).
+  - **[Lawrence Livermore (LLNL)](https://www.llnl.gov/)** — [hypre](https://hypre.readthedocs.io/) (algebraic multigrid; the production analogue of Module 05), [MFEM](https://mfem.org/), [SUNDIALS](https://computing.llnl.gov/projects/sundials).
+  - **[Sandia](https://www.sandia.gov/)** — [Trilinos](https://trilinos.github.io/), [Kokkos](https://kokkos.org/) — the performance-portability stack underneath much of US HPC.
+  - **[Oak Ridge (ORNL)](https://www.ornl.gov/)** — Jack Dongarra's group; [LAPACK / ScaLAPACK / MAGMA](https://www.icl.utk.edu/research/magma); the [Frontier exascale system](https://www.olcf.ornl.gov/frontier/), now the world's flagship machine for climate, fusion, and materials PDE workloads.
+- **[SIMULA Research Laboratory](https://www.simula.no/) (Oslo)** — Hans Petter Langtangen's legacy; long-time home of [FEniCS](https://fenicsproject.org/) and the broader Python finite-element ecosystem. The UFL variational form referenced in [Module 03](crosswalk.md#module-03--finite-elements--variational-forms) — `a = inner(a_sigma * grad(u), grad(v)) * dx` — is FEniCS syntax, written at SIMULA.
+- **[Santa Fe Institute](https://www.santafe.edu/)** — The complex-systems and dynamical-systems framings of the SciML problem. The Crutchfield / West / Kauffman lineage shaped the data-driven-dynamics community; their conceptual gravity informs DyNoBench and dynamicsai.org below.
+- **[IPAM at UCLA](https://www.ipam.ucla.edu/)** — The Institute for Pure and Applied Mathematics hosts long-program semesters where the SciML field's working consensus actually gets worked out: *Machine Learning for Physical Sciences* (2019), *Tensor Methods and Emerging Applications* (2021), and the ongoing PDE-and-learning workshops. Recordings of the long-program tutorials are on the IPAM YouTube channel and worth your time.
+- **[dynamicsai.org / DyNoBench](https://dynamicsai.org/)** — A coordinated benchmarking effort on data-driven discovery of dynamical systems, parallel and complementary to PDEBench (see Module 11). Read the two together when evaluating neural operators on time-series ODEs.
+
+This list grossly under-credits Europe (INRIA, Max Planck, Oxford NA group, Cambridge DAMTP, Imperial), Asia (RIKEN, Tsinghua, NCAR's atmospheric modelling community), and the wider open-source SciML ecosystem (the JuliaSciML and JAX-CFD groups, the mesh-software community around Gmsh and CGAL). Each module will cite the institutions whose work it builds on; corrections and additions welcome via Discussion or PR.
+
 ## Who is this for?
 
 - ML researchers entering SciML who want to understand what they're benchmarking against
@@ -146,11 +165,11 @@ This repository is mirrored on both Hugging Face and GitHub:
 
 ```bash
 # From Hugging Face (primary; uses the `hf` CLI):
-git clone https://huggingface.co/datasets/mhough/spinning-up-pde
-cd spinning-up-pde
+git clone https://huggingface.co/datasets/mhough/spinning-up-in-pde
+cd spinning-up-in-pde
 
 # Or from GitHub (mirror):
-# git clone https://github.com/m9h/spinning-up-pde.git
+# git clone https://github.com/m9h/spinning-up-in-pde.git
 
 # Create environment (requires uv: https://docs.astral.sh/uv/)
 uv venv .venv --python 3.13

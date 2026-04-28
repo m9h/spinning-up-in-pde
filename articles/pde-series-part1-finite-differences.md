@@ -54,7 +54,7 @@ What Richardson did *not* know was why his hand-rolled FTCS scheme had blown up.
 
 ## 1928: Courant, Friedrichs, and Lewy
 
-In 1928, Richard Courant, Kurt Friedrichs, and Hans Lewy published a paper in *Mathematische Annalen* with a title that, translated, reads "On the partial difference equations of mathematical physics." It is the paper that introduced the **CFL condition** — the stability bound that bears their initials — and it explained, mathematically, what had gone wrong with Richardson's 1922 forecast.
+In 1928, Richard Courant, Kurt Friedrichs, and Hans Lewy — all then at Göttingen — published a paper in *Mathematische Annalen* with a title that, translated, reads "On the partial difference equations of mathematical physics." It is the paper that introduced the **CFL condition** — the stability bound that bears their initials — and it explained, mathematically, what had gone wrong with Richardson's 1922 forecast. Courant himself would emigrate to New York in 1934 and found what is today the [Courant Institute of Mathematical Sciences](https://cims.nyu.edu/) at NYU — the institutional home of mathematical PDE numerics ever since.
 
 The argument runs as follows. For a hyperbolic PDE — say, the wave equation `∂u/∂t = c · ∂u/∂x` — information travels at finite speed `c`. If you discretise the equation on a grid with cell size `Δx` and march forward with timestep `Δt`, the *numerical* domain of dependence (the cells the scheme actually reads from to compute the next value) must contain the *physical* domain of dependence (the cells where the true PDE solution depends on the past). If `Δt` is too large for `Δx`, the physical signal can outrun the numerical scheme — the scheme cannot "see" the data it needs — and the simulation diverges.
 
