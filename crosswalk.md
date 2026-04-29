@@ -87,8 +87,12 @@ No first-party operator repo yet. We reproduce against
 
 External: [PDEBench](https://github.com/pdebench/PDEBench),
 [PDEArena](https://github.com/microsoft/pdearena),
-[SciMLBenchmarks.jl](https://github.com/SciML/SciMLBenchmarks.jl),
-[DyNoBench / dynamicsai.org](https://dynamicsai.org/).
+[SciMLBenchmarks.jl](https://github.com/SciML/SciMLBenchmarks.jl).
+The adjacent benchmark communities — dynamical-systems identification
+([DynaDojo, NeurIPS 2023 D&B](https://proceedings.neurips.cc/paper_files/paper/2023/hash/32093649cbbcff773d9a991d8c30a7fe-Abstract-Datasets_and_Benchmarks.html))
+and control theory ([jaxctrl](https://github.com/m9h/jaxctrl), Module 06) —
+share most of the numerical primitives the PDE benchmarks measure;
+Module 11 makes the crosswalk explicit.
 
 ### Module 12 — Inverse Problems & FWI
 
