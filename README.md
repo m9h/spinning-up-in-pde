@@ -44,18 +44,18 @@ This curriculum traces that intellectual lineage from Euler's 1768 forward step 
 
 There are excellent neural-operator benchmarks already. This curriculum exists to give them a backstory.
 
-|  | [PDEBench](https://github.com/pdebench/PDEBench) | [PDEArena](https://github.com/microsoft/pdearena) | [SciMLBenchmarks](https://github.com/SciML/SciMLBenchmarks.jl) | [DeepXDE](https://github.com/lululxvi/deepxde) | **This curriculum** |
-|---|---|---|---|---|---|
-| **Classical PDE numerics** | -- | -- | Some | -- | Modules 1-5 (FD, FV, FEM, spectral, multigrid) |
-| **Adjoint & AD** | -- | -- | Implicit (Julia AD) | -- | Module 6, with jaxctrl crosswalk |
-| **Differentiable solvers** | -- | -- | -- | -- | Module 7 (JAX-CFD, PhiFlow, jwave) |
-| **PINNs** | -- | -- | -- | Yes | Module 8 |
-| **Neural operators** | FNO, U-Net | FNO, U-Net, GNO | -- | -- | Modules 9-10 |
-| **Standardised metrics** | Conservation, spectral RMSE | Trajectory rollout | Work-precision diagrams | -- | Module 11 (uses all of the above) |
-| **Inverse problems / FWI** | -- | -- | -- | -- | Module 12 (brain-fwi, jwave, fijee leadfield) |
-| **Historical narrative** | -- | -- | -- | -- | Every module |
-| **Primary language** | PyTorch | PyTorch | Julia | TF/PyTorch/JAX | JAX |
-| **Format** | Datasets + baselines | Datasets + baselines | Benchmarks + WPDs | Solver framework | Curriculum + weekly sessions |
+|  | [PDEBench](https://github.com/pdebench/PDEBench) | [PDEArena](https://github.com/microsoft/pdearena) | [SciMLBenchmarks](https://github.com/SciML/SciMLBenchmarks.jl) | [DeepXDE](https://github.com/lululxvi/deepxde) | [DeepInverse](https://deepinv.github.io/) | **This curriculum** |
+|---|---|---|---|---|---|---|
+| **Classical PDE numerics** | -- | -- | Some | -- | -- | Modules 1-5 (FD, FV, FEM, spectral, multigrid) |
+| **Adjoint & AD** | -- | -- | Implicit (Julia AD) | -- | Yes (gradients through forward op) | Module 6, with jaxctrl crosswalk |
+| **Differentiable solvers** | -- | -- | -- | -- | -- | Module 7 (JAX-CFD, PhiFlow, jwave) |
+| **PINNs** | -- | -- | -- | Yes | -- | Module 8 |
+| **Neural operators** | FNO, U-Net | FNO, U-Net, GNO | -- | -- | -- | Modules 9-10 |
+| **Standardised metrics** | Conservation, spectral RMSE | Trajectory rollout | Work-precision diagrams | -- | PSNR / SSIM / LPIPS for imaging IPs | Module 11 (uses all of the above) |
+| **Inverse problems / FWI** | -- | -- | -- | -- | Yes — learned priors, plug-and-play, diffusion-based | Module 12 (brain-fwi, jwave, fijee leadfield) |
+| **Historical narrative** | -- | -- | -- | -- | -- | Every module |
+| **Primary language** | PyTorch | PyTorch | Julia | TF/PyTorch/JAX | PyTorch | JAX |
+| **Format** | Datasets + baselines | Datasets + baselines | Benchmarks + WPDs | Solver framework | Inverse-problem framework | Curriculum + weekly sessions |
 
 **The gap we fill:** PDEBench tells you which architecture wins on Burgers. It does not tell you what FTCS is, why CFL exists, or why the FEM community spent thirty years arguing about test functions. This curriculum is the "spinning-up" prequel: read it, run the notebooks, and the benchmark papers will read like the next chapter instead of an alien language.
 
@@ -68,7 +68,7 @@ The history of computational PDE solvers is also a history of specific instituti
   - **[Los Alamos (LANL)](https://www.lanl.gov/)** — von Neumann's nuclear simulations; the institutional context in which his stability analysis (Module 01) matured. Modern: ALE methods, kinetic codes, FLAG, xRAGE.
   - **[Argonne (ANL)](https://www.anl.gov/)** — home of [PETSc](https://petsc.org/), the dominant scalable PDE-solver toolkit; also the [MPICH](https://www.mpich.org/) reference implementation.
   - **[Lawrence Berkeley (LBNL)](https://www.lbl.gov/)** — Phil Colella's adaptive-mesh-refinement lineage; [BoxLib / AMReX](https://amrex-codes.github.io/amrex/), [Chombo](https://commons.lbl.gov/display/chombo/Chombo+-+Software+for+Adaptive+Solutions+of+Partial+Differential+Equations).
-  - **[Lawrence Livermore (LLNL)](https://www.llnl.gov/)** — [hypre](https://hypre.readthedocs.io/) (algebraic multigrid; the production analogue of Module 05), [MFEM](https://mfem.org/), [SUNDIALS](https://computing.llnl.gov/projects/sundials).
+  - **[Lawrence Livermore (LLNL)](https://www.llnl.gov/)** — [hypre](https://hypre.readthedocs.io/) (algebraic multigrid; the production analogue of Module 05), [MFEM](https://mfem.org/), [SUNDIALS](https://computing.llnl.gov/projects/sundials), and [libROM](https://www.librom.net/) (reduced-order modelling). LLNL's libROM team also hosts the [**DDPS** webinar series](https://www.librom.net/ddps.html) — see _Recurring seminars_ below.
   - **[Sandia](https://www.sandia.gov/)** — [Trilinos](https://trilinos.github.io/), [Kokkos](https://kokkos.org/) — the performance-portability stack underneath much of US HPC.
   - **[Oak Ridge (ORNL)](https://www.ornl.gov/)** — Jack Dongarra's group; [LAPACK / ScaLAPACK / MAGMA](https://www.icl.utk.edu/research/magma); the [Frontier exascale system](https://www.olcf.ornl.gov/frontier/), now the world's flagship machine for climate, fusion, and materials PDE workloads.
 - **[SIMULA Research Laboratory](https://www.simula.no/) (Oslo)** — Hans Petter Langtangen's legacy; long-time home of [FEniCS](https://fenicsproject.org/) and the broader Python finite-element ecosystem. The UFL variational form referenced in [Module 03](crosswalk.md#module-03--finite-elements--variational-forms) — `a = inner(a_sigma * grad(u), grad(v)) * dx` — is FEniCS syntax, written at SIMULA.
@@ -77,6 +77,14 @@ The history of computational PDE solvers is also a history of specific instituti
 - **[dynamicsai.org / DyNoBench](https://dynamicsai.org/)** — A coordinated benchmarking effort on data-driven discovery of dynamical systems, parallel and complementary to PDEBench (see Module 11). Read the two together when evaluating neural operators on time-series ODEs.
 
 This list grossly under-credits Europe (INRIA, Max Planck, Oxford NA group, Cambridge DAMTP, Imperial), Asia (RIKEN, Tsinghua, NCAR's atmospheric modelling community), and the wider open-source SciML ecosystem (the JuliaSciML and JAX-CFD groups, the mesh-software community around Gmsh and CGAL). Each module will cite the institutions whose work it builds on; corrections and additions welcome via Discussion or PR.
+
+## Recurring seminars and talks
+
+If you want to keep the field at peripheral vision while you work through the curriculum, the following recurring seminars and webinar series are the easiest way in. Most have full archives going back several years.
+
+- **[DDPS — Data-Driven Physical Simulations](https://www.librom.net/ddps.html)** (LLNL libROM team). Weekly webinar on machine learning + AI methods for computational science and physical simulation: deep learning for simulation, generative models, data assimilation, fluid dynamics, plasma physics. Recorded archive from 2020 onwards. Subscribe on the page. Organised by Youngsoo Choi and Siu Wun Cheung.
+
+_(More seminars and resources will be added here as the curriculum grows; suggestions welcome via Discord or PR.)_
 
 ## Who is this for?
 
@@ -129,7 +137,7 @@ What "good" looks like, and what real problems look like.
 | | Module | What you'll build | Anchored to |
 |---|---|---|---|
 | 11 | **The Benchmark Landscape** | Run the same FNO on PDEBench Burgers, then on PDEArena Navier-Stokes, then on a SciMLBenchmarks WPD. Read the metric definitions: spectral RMSE, conservation RMSE, work-precision. | [PDEBench](https://github.com/pdebench/PDEBench), [PDEArena](https://github.com/microsoft/pdearena), [DyNoBench (dynamicsai.org)](https://dynamicsai.org/) |
-| 12 | **Inverse Problems & FWI** | Full-waveform inversion on a small acoustic test case in jwave; brief tour of brain-fwi (transcranial FWI) and the EEG forward-inverse problem (fijee leadfield → source localization). | [brain-fwi](https://github.com/m9h/brain-fwi), [jwave](https://github.com/m9h/jwave), [Fijee-Project](https://github.com/m9h/Fijee-Project) |
+| 12 | **Inverse Problems & FWI** | Full-waveform inversion on a small acoustic test case in jwave; brief tour of brain-fwi (transcranial FWI) and the EEG forward-inverse problem (fijee leadfield → source localization). Compare classical regularised inversion against learned-prior approaches via [DeepInverse](https://deepinv.github.io/). | [brain-fwi](https://github.com/m9h/brain-fwi), [jwave](https://github.com/m9h/jwave), [Fijee-Project](https://github.com/m9h/Fijee-Project), [DeepInverse](https://deepinv.github.io/) |
 
 A 13th module — **Agent-driven PDE discovery** — is planned but not scheduled, pending [agentsciml](https://github.com/m9h/agentsciml) maturity.
 
