@@ -38,7 +38,7 @@ In 1922, Lewis Fry Richardson published *Weather Prediction by Numerical Process
 
 This curriculum traces that intellectual lineage from Euler's 1768 forward step through finite elements, spectral methods, multigrid, and adjoints, into modern differentiable physics and neural operators. You will implement every method on a small problem, see why each one was invented, and understand what the modern benchmarks (PDEBench, PDEArena, SciMLBenchmarks, DyNoBench) are actually measuring.
 
-> Modeled on OpenAI's [Spinning Up in RL](https://spinningup.openai.com/) and the author's [Spinning Up in Active Inference](https://github.com/m9h/spinning-up-alf). Companion to the [Hugging Face Science](https://huggingface.co/HuggingFaceScience) Discord, channel **#pde**, with a weekly community session.
+> Modeled on OpenAI's [Spinning Up in RL](https://spinningup.openai.com/) and the author's [Spinning Up in Active Inference](https://github.com/m9h/spinning-up-alf). Companion to the [Hugging Face Science](https://huggingface.co/HuggingFaceScience) Discord, channel **#pde**, founded around the December 2025 blog post [_Why You Should Care About Partial Differential Equations (PDEs)_](https://huggingface.co/blog/hugging-science/pde) by Balaji, Chen, Nápoles, Sinha, and Ben Chaim. The channel meets weekly; this curriculum is the long-form educational companion to that founding post's case for PDE-as-SciML.
 
 ## How this fits with other resources
 
@@ -82,7 +82,8 @@ This list grossly under-credits Europe (INRIA, Max Planck, Oxford NA group, Camb
 
 If you want to keep the field at peripheral vision while you work through the curriculum, the following recurring seminars and webinar series are the easiest way in. Most have full archives going back several years.
 
-- **[DDPS — Data-Driven Physical Simulations](https://www.librom.net/ddps.html)** (LLNL libROM team). Weekly webinar on machine learning + AI methods for computational science and physical simulation: deep learning for simulation, generative models, data assimilation, fluid dynamics, plasma physics. Recorded archive from 2020 onwards. Subscribe on the page. Organised by Youngsoo Choi and Siu Wun Cheung.
+- **[DDPS — Data-Driven Physical Simulations](https://www.librom.net/ddps.html)** (LLNL libROM team). Weekly webinar on machine learning + AI methods for computational science and physical simulation: deep learning for simulation, generative models, data assimilation, fluid dynamics, plasma physics. Recorded archive from 2020 onwards (e.g. [_The Nexus of Machine Learning, Physics-based Modeling, and Uncertainty Quantification_](https://youtu.be/0oWFK8Hlom8) is a representative DDPS talk on the ML / physics-modelling / UQ axis). Subscribe on the page. Organised by Youngsoo Choi and Siu Wun Cheung.
+- **[CRUNCH Group lecture archive](https://youtu.be/Md2-qh2OEkY?si=HlP2f9Xk6ScGZT2q)** ([George Em Karniadakis](https://www.brown.edu/research/projects/crunch/), Division of Applied Mathematics, Brown). The CRUNCH Group invented PINNs (Raissi–Perdikaris–Karniadakis, 2019) and DeepONet (Lu et al., 2021); their YouTube channel is the primary lecture archive for those methods, the natural companion to Modules 08 and 09.
 
 _(More seminars and resources will be added here as the curriculum grows; suggestions welcome via Discord or PR.)_
 
@@ -139,7 +140,7 @@ What "good" looks like, and what real problems look like.
 | 11 | **The Benchmark Landscape** | Run the same FNO on PDEBench Burgers, then on PDEArena Navier-Stokes, then on a SciMLBenchmarks WPD. Read the metric definitions: spectral RMSE, conservation RMSE, work-precision. | [PDEBench](https://github.com/pdebench/PDEBench), [PDEArena](https://github.com/microsoft/pdearena), [DyNoBench (dynamicsai.org)](https://dynamicsai.org/) |
 | 12 | **Inverse Problems & FWI** | Full-waveform inversion on a small acoustic test case in jwave; brief tour of brain-fwi (transcranial FWI) and the EEG forward-inverse problem (fijee leadfield → source localization). Compare classical regularised inversion against learned-prior approaches via [DeepInverse](https://deepinv.github.io/). | [brain-fwi](https://github.com/m9h/brain-fwi), [jwave](https://github.com/m9h/jwave), [Fijee-Project](https://github.com/m9h/Fijee-Project), [DeepInverse](https://deepinv.github.io/) |
 
-A 13th module — **Agent-driven PDE discovery** — is planned but not scheduled, pending [agentsciml](https://github.com/m9h/agentsciml) maturity.
+A 13th module — **Agent-driven PDE discovery** — is planned but not scheduled, pending [agentsciml](https://github.com/m9h/agentsciml) maturity. The published reference is Jiang & Karniadakis (2025), [_AgenticSciML: Collaborative Multi-Agent Systems for Emergent Discovery in Scientific Machine Learning_](https://arxiv.org/abs/2511.07262), out of the [CRUNCH Group](https://www.brown.edu/research/projects/crunch/) at Brown — the same group whose lecture archive is cited in _Recurring seminars_.
 
 ---
 
