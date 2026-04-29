@@ -71,21 +71,79 @@ The history of computational PDE solvers is also a history of specific instituti
   - **[Lawrence Livermore (LLNL)](https://www.llnl.gov/)** — [hypre](https://hypre.readthedocs.io/) (algebraic multigrid; the production analogue of Module 05), [MFEM](https://mfem.org/), [SUNDIALS](https://computing.llnl.gov/projects/sundials), and [libROM](https://www.librom.net/) (reduced-order modelling). LLNL's libROM team also hosts the [**DDPS** webinar series](https://www.librom.net/ddps.html) — see _Recurring seminars_ below.
   - **[Sandia](https://www.sandia.gov/)** — [Trilinos](https://trilinos.github.io/), [Kokkos](https://kokkos.org/) — the performance-portability stack underneath much of US HPC.
   - **[Oak Ridge (ORNL)](https://www.ornl.gov/)** — Jack Dongarra's group; [LAPACK / ScaLAPACK / MAGMA](https://www.icl.utk.edu/research/magma); the [Frontier exascale system](https://www.olcf.ornl.gov/frontier/), now the world's flagship machine for climate, fusion, and materials PDE workloads.
+- **[Brown University, Division of Applied Mathematics](https://appliedmath.brown.edu/)** — Lax-Wendroff lineage; the modern home of [George Em Karniadakis's CRUNCH Group](https://www.brown.edu/research/projects/crunch/) (the [CRUNCH lecture archive](https://youtu.be/Md2-qh2OEkY) is in _Recurring seminars_). PINNs (Raissi-Perdikaris-Karniadakis 2019) and DeepONet (Lu et al. 2021) were both invented here, anchoring Modules 08-09.
+- **[Caltech Computing + Mathematical Sciences](https://www.cms.caltech.edu/)** — One of the densest current concentrations of SciML. [Andrew Stuart](http://stuart.caltech.edu/) (operator learning, Bayesian inverse problems), [Houman Owhadi](http://users.cms.caltech.edu/~owhadi/index.html) (operator-valued kernels), [Anima Anandkumar](https://www.cms.caltech.edu/people/anima) (co-creator of FNO).
+- **[University of Washington — AI Institute in Dynamic Systems](https://dynamicsai.org/)** — NSF-funded institute led by Steve Brunton, Nathan Kutz, and Bing Brunton. Hosts [DyNoBench](https://dynamicsai.org/dynobench), the data-driven dynamical-systems benchmark suite cited in Module 11. Read alongside PDEBench when evaluating neural operators on time-series ODEs.
+- **[UT Austin Oden Institute](https://www.oden.utexas.edu/)** — Tinsley Oden's institutional legacy; PDE-constrained optimization, uncertainty quantification, scientific machine learning. Directed by Karen Willcox.
+- **[ETH Zurich SAM (Seminar for Applied Mathematics)](https://math.ethz.ch/sam)** — [Christoph Schwab](https://www.sam.math.ethz.ch/people/personal-data.html?u=schwab) and [Ralf Hiptmair](https://www.sam.math.ethz.ch/people/personal-data.html?u=hiptmair) lead Europe's strongest concentration of FEM theory and UQ.
+- **[Oxford Mathematical Institute, Numerical Analysis Group](https://www.maths.ox.ac.uk/groups/numerical-analysis)** — Lloyd N. Trefethen (now Harvard since 2023; Oxford archive [here](https://people.maths.ox.ac.uk/trefethen/)) and Endre Süli. The reading list for Modules 04+ leans heavily on the Oxford NA textbooks.
+- **[MPI for Mathematics in the Sciences, Leipzig](https://www.mis.mpg.de/)** — Wolfgang Hackbusch's institute. Hackbusch invented multigrid (1976); the institutional lineage anchors Module 05.
+- **[Heidelberg IWR (Interdisciplinary Center for Scientific Computing)](https://www.iwr.uni-heidelberg.de/)** — Peter Bastian's group; home of [DUNE](https://dune-project.org/).
+- **[INRIA (France)](https://www.inria.fr/)** — National applied-math + HPC institute, multi-site. Olivier Pironneau (mesh adaptation, optimal control); birthplace of [FreeFEM](https://freefem.org/).
+- **[TU Munich (TUM) — Munich Center for Computational Sciences](https://www.mcsc.tum.de/)** — Hans-Joachim Bungartz's sparse-grid lineage; current home of [JAX-Fluids](https://github.com/tumaer/JAXFLUIDS) and [PhiFlow](https://github.com/tum-pbs/PhiFlow).
 - **[SIMULA Research Laboratory](https://www.simula.no/) (Oslo)** — Hans Petter Langtangen's legacy; long-time home of [FEniCS](https://fenicsproject.org/) and the broader Python finite-element ecosystem. The UFL variational form referenced in [Module 03](crosswalk.md#module-03--finite-elements--variational-forms) — `a = inner(a_sigma * grad(u), grad(v)) * dx` — is FEniCS syntax, written at SIMULA.
-- **[Santa Fe Institute](https://www.santafe.edu/)** — The complex-systems and dynamical-systems framings of the SciML problem. The Crutchfield / West / Kauffman lineage shaped the data-driven-dynamics community; their conceptual gravity informs DyNoBench and dynamicsai.org below.
-- **[IPAM at UCLA](https://www.ipam.ucla.edu/)** — The Institute for Pure and Applied Mathematics hosts long-program semesters where the SciML field's working consensus actually gets worked out: *Machine Learning for Physical Sciences* (2019), *Tensor Methods and Emerging Applications* (2021), and the ongoing PDE-and-learning workshops. Recordings of the long-program tutorials are on the IPAM YouTube channel and worth your time.
-- **[dynamicsai.org / DyNoBench](https://dynamicsai.org/)** — A coordinated benchmarking effort on data-driven discovery of dynamical systems, parallel and complementary to PDEBench (see Module 11). Read the two together when evaluating neural operators on time-series ODEs.
+- **[Flatiron Institute — Center for Computational Mathematics (CCM)](https://www.simonsfoundation.org/flatiron/center-for-computational-mathematics/)** — Simons Foundation. Leslie Greengard (Fast Multipole Method); pure applied math at scale.
+- **[Santa Fe Institute](https://www.santafe.edu/)** — Complex-systems and dynamical-systems framings of the SciML problem. The Crutchfield / West / Kauffman lineage informs the data-driven dynamics community.
+- **[IPAM at UCLA](https://www.ipam.ucla.edu/)** — Long-program semesters where the SciML field's working consensus actually gets worked out: *Machine Learning for Physical Sciences* (2019), *Tensor Methods and Emerging Applications* (2021), ongoing PDE-and-learning workshops. Recordings on the [IPAM YouTube channel](https://www.youtube.com/c/IPAMUCLA).
 
-This list grossly under-credits Europe (INRIA, Max Planck, Oxford NA group, Cambridge DAMTP, Imperial), Asia (RIKEN, Tsinghua, NCAR's atmospheric modelling community), and the wider open-source SciML ecosystem (the JuliaSciML and JAX-CFD groups, the mesh-software community around Gmsh and CGAL). Each module will cite the institutions whose work it builds on; corrections and additions welcome via Discussion or PR.
+For the longer survey — including Asian institutes (RIKEN, Tsinghua, NUS, ANU), additional European groups (Cambridge DAMTP, Imperial, EPFL, KTH, BCAM, ICTP), more US national-lab software, and the institutions behind Gmsh/CGAL/visualization tooling — see [`RESOURCES.md`](RESOURCES.md). Corrections and additions welcome via [Discussion on Hugging Face](https://huggingface.co/datasets/mhough/spinning-up-in-pde/discussions) or PR.
+
+## Open-source PDE software
+
+The curriculum's notebooks are JAX-native, but the broader open-source PDE ecosystem is most of what students will encounter in industry and at national labs. Modules 03–05 will look at production-grade C++ and Python codes alongside the teaching code, and a working scientific computing practitioner needs at least passing fluency with the following stacks. The longer annotated list lives in [`RESOURCES.md`](RESOURCES.md).
+
+### FEM and multi-physics frameworks
+
+- **[FEniCS](https://fenicsproject.org/)** — Python FEM with automatic weak-form compilation via UFL (the `tCS_model.ufl` example in Module 03 is FEniCS syntax). Originated at SIMULA / KTH.
+- **[Firedrake](https://www.firedrakeproject.org/)** — Imperial's fork of FEniCS; tighter PETSc + adjoint integration via [pyadjoint](https://www.dolfin-adjoint.org/).
+- **[deal.II](https://www.dealii.org/)** — C++ FEM. The reference for adaptive mesh refinement.
+- **[NGSolve](https://ngsolve.org/)** — Joachim Schöberl's Vienna project. Strong in HDG, mixed methods.
+- **[MOOSE](https://mooseframework.inl.gov/)** — Idaho National Lab's multi-physics framework. Built on libMesh; nuclear-reactor-scale problems.
+- **[DUNE](https://dune-project.org/)** — Heidelberg IWR. The most flexible C++ PDE toolkit (modular FEM/FV/DG).
+- **[FreeFEM](https://freefem.org/)** — INRIA/Sorbonne. DSL-driven FEM widely used in the French community.
+
+### Finite-volume CFD and shock capturing
+
+- **[OpenFOAM](https://www.openfoam.com/)** — the dominant open-source CFD package; industrial standard.
+- **[SU2](https://su2code.github.io/)** — Stanford-origin; gradient-based shape and topology optimization via discrete adjoint.
+- **[Clawpack](https://www.clawpack.org/)** — Randall LeVeque's lineage; the canonical reference codebase for hyperbolic PDEs and shock capturing. Companion to Module 02.
+- **[Trixi.jl](https://trixi-framework.github.io/)** — Julia-native discontinuous Galerkin solver.
+
+### Mesh generation and computational geometry
+
+Mesh quality is half of every nontrivial PDE simulation. The curriculum's tetrahedral-mesh example in Module 03 ([Fijee tCS](https://github.com/m9h/Fijee-Project/blob/master/Fijee/Finite_element_method_models/tCS_model.ufl)) was generated with these tools.
+
+- **[Gmsh](https://gmsh.info/)** — The standard open-source mesh generator. Built-in geometry kernel, OpenCASCADE backend, scriptable in Python and a custom DSL. Pairs natively with FEniCS, Firedrake, deal.II, MFEM.
+- **[CGAL](https://www.cgal.org/)** — Computational Geometry Algorithms Library. C++ reference implementation for triangulations, mesh generation, surface reconstruction, and the algorithms beneath most modern meshers.
+- **[Cubit / Coreform](https://coreform.com/)** — Sandia-origin commercial mesher; open-source releases via [Coreform Cubit](https://coreform.com/products/coreform-cubit/learn/).
+- **[MeshPy](https://documen.tician.de/meshpy/)** / **[TetGen](https://www.tetgen.org/)** / **[Triangle](https://www.cs.cmu.edu/~quake/triangle.html)** — Python wrappers and underlying tetrahedral / 2D mesh generators.
+
+### Scalable solver toolkits (already named under _Where the work happens_)
+
+[PETSc](https://petsc.org/), [Trilinos](https://trilinos.github.io/), [Kokkos](https://kokkos.org/), [hypre](https://hypre.readthedocs.io/), [MFEM](https://mfem.org/), [SUNDIALS](https://computing.llnl.gov/projects/sundials), [AMReX](https://amrex-codes.github.io/amrex/), [MAGMA](https://www.icl.utk.edu/research/magma).
+
+### Differentiable simulators (JAX-first)
+
+- **[JAX-CFD](https://github.com/google/jax-cfd)** (Google) — pseudospectral and finite-volume Navier-Stokes.
+- **[JAX-Fluids](https://github.com/tumaer/JAXFLUIDS)** (TUM) — differentiable compressible Navier-Stokes; shock capturing, multi-phase.
+- **[PhiFlow](https://github.com/tum-pbs/PhiFlow)** (TUM) — differentiable physics with JAX/PyTorch/TF backends; tight ML integration.
+- **[Diffrax](https://github.com/patrick-kidger/diffrax)** + **[Equinox](https://github.com/patrick-kidger/equinox)** (Patrick Kidger) — ODE/SDE/CDE solvers and JAX neural-network library; the substrate for time-evolved PDEs in JAX.
+- **[jwave](https://github.com/m9h/jwave)** — differentiable acoustic FWI (Modules 04, 07, 12).
+
+### Visualization
+
+[VTK](https://vtk.org/), [ParaView](https://www.paraview.org/), and [VisIt](https://visit-dav.github.io/visit-website/) cover almost every PDE-data visualization need. ParaView is the typical first move for FEniCS / MFEM output.
 
 ## Recurring seminars and talks
 
-If you want to keep the field at peripheral vision while you work through the curriculum, the following recurring seminars and webinar series are the easiest way in. Most have full archives going back several years.
+If you want to keep the field at peripheral vision while you work through the curriculum, the following recurring seminars, webinar series, and self-paced courses are the easiest way in. Most have full archives going back several years.
 
 - **[DDPS — Data-Driven Physical Simulations](https://www.librom.net/ddps.html)** (LLNL libROM team). Weekly webinar on machine learning + AI methods for computational science and physical simulation: deep learning for simulation, generative models, data assimilation, fluid dynamics, plasma physics. Recorded archive from 2020 onwards (e.g. [_The Nexus of Machine Learning, Physics-based Modeling, and Uncertainty Quantification_](https://youtu.be/0oWFK8Hlom8) is a representative DDPS talk on the ML / physics-modelling / UQ axis). Subscribe on the page. Organised by Youngsoo Choi and Siu Wun Cheung.
 - **[CRUNCH Group lecture archive](https://youtu.be/Md2-qh2OEkY?si=HlP2f9Xk6ScGZT2q)** ([George Em Karniadakis](https://www.brown.edu/research/projects/crunch/), Division of Applied Mathematics, Brown). The CRUNCH Group invented PINNs (Raissi–Perdikaris–Karniadakis, 2019) and DeepONet (Lu et al., 2021); their YouTube channel is the primary lecture archive for those methods, the natural companion to Modules 08 and 09.
+- **[12 steps to Navier-Stokes](https://github.com/barbagroup/CFDPython)** (Lorena Barba, GW Engineering). Twelve self-paced Python notebooks taking the reader from 1D linear convection to 2D incompressible Navier-Stokes. Genuinely the best free CFD onramp; pairs perfectly with Module 02. The associated [12 steps blog series](https://lorenabarba.com/blog/cfd-python-12-steps-to-navier-stokes/) gives the pedagogical backstory.
+- **[Trefethen's Oxford NA video lectures](https://people.maths.ox.ac.uk/trefethen/lectures.html)** — Lloyd N. Trefethen's recorded lectures, principally from his Oxford NA group years (he moved to Harvard in 2023). The companion to his textbook *Spectral Methods in MATLAB* and the Chebfun tooling. Module 04 reading.
 
-_(More seminars and resources will be added here as the curriculum grows; suggestions welcome via Discord or PR.)_
+_(For the broader list — additional textbooks, MIT OCW, Stanford CME, IPAM workshop archives, and SIAM Visualization recordings — see [`RESOURCES.md`](RESOURCES.md). Suggestions welcome via Discord or PR.)_
 
 ## Who is this for?
 
